@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom'
 import db from './api/db';
 import TopBar from './components/top-bar'
 import ClipboardCard from './components/card';
-import emptyIcon from './icons/empty.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClipboard } from '@fortawesome/free-solid-svg-icons'
 const clipboardWatcher = require('electron-clipboard-watcher2')
@@ -38,7 +37,7 @@ class App extends React.Component {
 
     async componentDidMount() {
         const self = this;
-        // retrive all clips sorted by newest to oldest
+        // retrieve all clips sorted by newest to oldest
         const savedClips = await db.clips.find({}).sort({ date: 1 });
         this.setState({
             history: [...this.state.history, ...savedClips]
@@ -58,15 +57,8 @@ class App extends React.Component {
         });
     }
 
-    quitApp = (e) => {
+    quitApp = () => {
         remote.app.exit();
-    }
-
-    dropDownTrigger = (e) => {
-        // required for bulma dropdowns https://stackoverflow.com/a/46787371
-        e.stopPropagation();
-        const dropdown = document.querySelector('.dropdown');
-        dropdown.classList.toggle('is-active');
     }
 
     checkClipboard = async (data, type) => {
@@ -185,9 +177,9 @@ class App extends React.Component {
             <footer className="footer">
                 <div className="content has-text-centered"> {clips.slice().reverse()} </div>
             </footer>
-        </div> 
+        </div>
         return (<div>
-            <TopBar search={this.search} searchString={this.state.searchString} onDropDown={this.dropDownTrigger} onDeleteAll={this.deleteAll} quitApp={this.quitApp}/>
+            <TopBar search={this.search} searchString={this.state.searchString} onDeleteAll={this.deleteAll} quitApp={this.quitApp}/>
             {clips.length > 0 ? nonEmpty : emptyCard}
         </div>
         )

@@ -9,6 +9,7 @@ dist/
 node_modules/
 *.compiled.*
 build/
+.history/
 
 # Folder config file #
 ######################

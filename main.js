@@ -9,8 +9,8 @@
 const { app, BrowserWindow, Tray, Menu, globalShortcut } = require('electron');
 const path = require('path')
 const url = require('url')
-    // Keep a global reference of the window object, if you don't, the window will
-    // be closed automatically when the JavaScript object is garbage collected.
+// Keep a global reference of the window object, if you don't, the window will
+// be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
 let tray = null;
 let dev = false
@@ -47,7 +47,7 @@ function createWindow() {
         show: false,
         transparent: true,
         webPreferences: {
-          enableRemoteModule: true,
+            enableRemoteModule: true,
             nodeIntegration: true
         }
     });
@@ -71,11 +71,11 @@ function createWindow() {
     }
 
     mainWindow.loadURL(indexPath)
-        // Open the DevTools.
-        //mainWindow.webContents.openDevTools();
+    // Open the DevTools.
+    // mainWindow.webContents.openDevTools();
 
     // Emitted when the window is closed.
-    mainWindow.on('closed', function() {
+    mainWindow.on('closed', function () {
         // Dereference the window object, usually you would store windows
         // in an array if your app supports multi windows, this is the time
         // when you should delete the corresponding element.
@@ -100,10 +100,21 @@ function createWindow() {
 
     let trayMenu = Menu.buildFromTemplate(trayMenuTemplate)
     tray.setContextMenu(trayMenu)
-        // show tray when clicked on
-        // tray.on('click', () => {
-        //     mainWindow.isVisible() ? mainWindow.hide() : mainWindow.show();
-        // });
+    // show tray when clicked on
+    // tray.on('click', () => {
+    //     mainWindow.isVisible() ? mainWindow.hide() : mainWindow.show();
+    // });
+
+    // register esc when showing and unregister when hidding, to avoid blocking other apps
+    mainWindow.on('show', event => {
+        globalShortcut.register('Esc', () => {
+            mainWindow.hide();
+        });
+    });
+
+    mainWindow.on('hide', event => {
+        globalShortcut.unregister('Esc');
+    });
 
     mainWindow.on('close', event => {
         event.preventDefault();
@@ -120,11 +131,6 @@ function createWindow() {
         // use the same shortcut to show or hide depeding on the mainWindows state
         mainWindow.isVisible() ? mainWindow.hide() : mainWindow.show();
     });
-
-    globalShortcut.register('Esc', () => {
-        mainWindow.hide();
-    });
-
 }
 
 app.on('ready', createWindow);

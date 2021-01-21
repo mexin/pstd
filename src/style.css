@@ -129,7 +129,6 @@ input {
     top: 0;
     left: 0;
     width: 100%;
-    ;
     height: 32.5px;
     line-height: 30px;
     outline: 0;
@@ -158,7 +157,6 @@ input {
 form:hover, form:focus-within {
   width: 400px;
   cursor: pointer;
-  transition-delay: 0s;
 }
 
 form:hover input {

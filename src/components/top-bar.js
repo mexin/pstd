@@ -1,9 +1,10 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faCog, faImage } from '@fortawesome/free-solid-svg-icons'
+import SearchBar from './search-bar';
 import icon from '../icons/clip-dark.png'
 
-const TopBar = ({ search, searchString, onDeleteAll, quitApp }) => {
+const TopBar = ({ search, searchString, resetSearch, onDeleteAll, quitApp }) => {
   const ref = useRef(null);
   const [open, setOpen] = useState(false);
 
@@ -34,14 +35,7 @@ const TopBar = ({ search, searchString, onDeleteAll, quitApp }) => {
             <div className="column is-4">
 
             </div>
-            <div className="column has-text-centered is-4">
-                <form action="">
-                    <input type="search" id="search-input" onChange={(e) => search(e)} value={searchString}/>
-                    <div className="anim-icon">
-                        <FontAwesomeIcon icon={faSearch} />
-                    </div>
-                </form>
-            </div>
+            <SearchBar search={search} searchString={searchString} resetSearch={resetSearch} />
             <div className="column has-text-right is-4">
                 <div ref={ref} className={"dropdown is-right has-text-left" + (!open ? "" : " is-active")} onClick={() => setOpen(!open)}>
                     <div className="dropdown-trigger">

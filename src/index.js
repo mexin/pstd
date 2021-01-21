@@ -116,16 +116,16 @@ class App extends React.Component {
         await db.clips.remove({}, { multi: true });
     }
 
-    search = (e, props) => {
+    search = (value, props) => {
         let newList = [];
         let currentList = [];
-        if (e.target.value !== '') {
-            this.setState({ searching: true, searchString: e.target.value });
+        if (value !== '') {
+            this.setState({ searching: true, searchString: value });
             currentList = this.state.history;
             newList = currentList.filter(item => {
                 if (item.type === 'text') {
                     const lc = item.data.toLowerCase();
-                    const filter = e.target.value.toLowerCase();
+                    const filter = value.toLowerCase();
                     if (lc.includes(filter)) {
                         return item;
                     }
@@ -138,6 +138,11 @@ class App extends React.Component {
         this.setState({
             filtered: newList,
         });
+    }
+
+    resetSearch = () => {
+      // remove search state and text
+      this.setState({ searching: false, searchString: '' });
     }
 
     render() {
@@ -167,7 +172,7 @@ class App extends React.Component {
         }
         const emptyCard = <div className="content empty-box">
             <div className="content has-text-centered">
-                < FontAwesomeIcon className="icon-app" icon={faClipboard} size="3x" />
+                <FontAwesomeIcon className="icon-app" icon={faClipboard} size="3x" />
                 <p className="is-info">
                     <small> {this.state.searching ? 'No matching results' : 'Empty clipboard'} </small>
                 </p>
@@ -179,11 +184,11 @@ class App extends React.Component {
             </footer>
         </div>
         return (<div>
-            <TopBar search={this.search} searchString={this.state.searchString} onDeleteAll={this.deleteAll} quitApp={this.quitApp}/>
+            <TopBar search={this.search} searchString={this.state.searchString} resetSearch={this.resetSearch} onDeleteAll={this.deleteAll} quitApp={this.quitApp}/>
             {clips.length > 0 ? nonEmpty : emptyCard}
         </div>
         )
     }
 }
 
-ReactDOM.render(< App />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));

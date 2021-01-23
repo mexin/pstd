@@ -4,10 +4,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 const ClipboardCard = (props) => {
-    const image = <img src={props.data} width="300px" />
+    const image = <img src={props.data} width="300px"/>
     return (
         <div className="card">
-            <div className="card-content"  onClick={(e) => props.onClicked(e, props)}>
+            <div className="card-content" onClick={(e) => props.onClicked(e, props)}>
                 <div className="content">
                     {props.type === 'image' ? image : props.data}
                 </div>

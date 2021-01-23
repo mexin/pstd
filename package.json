@@ -76,7 +76,7 @@
         "electronVersion": "11.2.0",
         "asar": true,
         "directories": {
-            "app": "/home/luismexin/Development/Electron/electron-react-webpack-boilerplate",
+            "app": "/home/luismexin/Development/Electron/pstd-v1",
             "output": "build"
         },
         "extraFiles": [

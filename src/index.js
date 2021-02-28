@@ -109,14 +109,14 @@ class App extends React.Component {
         await db.clips.remove({ _id: card._id });
     }
 
-    deleteAll = async (e, props) => {
+    deleteAll = async () => {
         this.setState({
             history: [],
         });
         await db.clips.remove({}, { multi: true });
     }
 
-    search = (value, props) => {
+    search = (value) => {
         let newList = [];
         let currentList = [];
         if (value !== '') {

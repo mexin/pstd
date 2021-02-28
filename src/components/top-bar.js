@@ -3,8 +3,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faCog, faImage } from '@fortawesome/free-solid-svg-icons'
 import SearchBar from './search-bar';
 import icon from '../icons/clip-dark.png'
+import lightIcon from '../icons/light.svg'
+import darkIcon from '../icons/dark.svg'
 
-const TopBar = ({search, searchString, resetSearch, onDeleteAll, quitApp}) => {
+const TopBar = ({ search, searchString, resetSearch, onDeleteAll, quitApp }) => {
     const ref = useRef(null);
     const [open, setOpen] = useState(false);
 
@@ -35,19 +37,29 @@ const TopBar = ({search, searchString, resetSearch, onDeleteAll, quitApp}) => {
             <div className="column is-4">
 
             </div>
-            <SearchBar search={search} searchString={searchString} resetSearch={resetSearch}/>
+            <SearchBar search={search} searchString={searchString} resetSearch={resetSearch} />
             <div className="column has-text-right is-4">
                 <div ref={ref} className={"dropdown is-right has-text-left" + (!open ? "" : " is-active")}
-                     onClick={() => setOpen(!open)}>
+                    onClick={() => setOpen(!open)}>
                     <div className="dropdown-trigger">
-                        <FontAwesomeIcon className="icon-app" icon={faCog} size="lg"/>
+                        <FontAwesomeIcon className="icon-app" icon={faCog} size="lg" />
                     </div>
                     <div className="dropdown-menu" id="dropdown-menu3" role="menu">
                         <div className="dropdown-content">
+                            <a className="dropdown-item p-4">
+                                <div class="site-logo__toggle-container">
+                                    <img id="light-icon" src={lightIcon} />
+                                    <img id="dark-icon" src={darkIcon} />
+                                    <label class="toggle-switch" for="toggle-input">
+                                        <input id="toggle-input" type="checkbox" />
+                                        <div class="toggle-switch__control"></div>
+                                    </label>
+                                </div>
+                            </a>
                             <a className="dropdown-item" onClick={(e) => onDeleteAll(e)}>
                                 Delete all
                             </a>
-                            <hr className="dropdown-divider"/>
+                            <hr className="dropdown-divider" />
                             <a className="dropdown-item">
                                 Help
                             </a>

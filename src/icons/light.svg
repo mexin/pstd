@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="230px" height="230px" viewBox="0 0 230 230" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="light" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="sun" transform="translate(10.000000, 9.000000)" fill="#f6f6f6">
+            <rect id="ray-0" x="94.9322915" y="0" width="20" height="36" rx="10"></rect>
+            <rect id="ray-1" x="95.1101967" y="175.457731" width="20" height="36" rx="10"></rect>
+            <rect id="ray-2" x="175" y="95.7776185" width="35" height="21" rx="10"></rect>
+            <rect id="ray-3" x="0" y="95.7776185" width="35" height="21" rx="10"></rect>
+            <rect id="ray-4" transform="translate(43.004635, 43.793789) rotate(45.000000) translate(-43.004635, -43.793789) " x="25.5046349" y="33.2937887" width="35" height="21" rx="10"></rect>
+            <rect id="ray-5" transform="translate(167.004635, 167.793789) rotate(45.000000) translate(-167.004635, -167.793789) " x="149.504635" y="157.293789" width="35" height="21" rx="10"></rect>
+            <rect id="ray-7" transform="translate(166.632990, 43.520643) rotate(-45.000000) translate(-166.632990, -43.520643) " x="149.13299" y="33.0206434" width="35" height="21" rx="10"></rect>
+            <rect id="ray-6" transform="translate(42.597228, 168.063351) rotate(-45.000000) translate(-42.597228, -168.063351) " x="25.0972282" y="157.563351" width="35" height="21" rx="10"></rect>
+            <circle id="disc" cx="105" cy="105.777619" r="58"></circle>
+        </g>
+    </g>
+</svg>

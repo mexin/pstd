@@ -7,7 +7,7 @@ const SearchBar = ({search, searchString, resetSearch}) => {
     const inputRef = useRef('');
     const [open, setOpen] = useState(false);
 
-    const deleteSearchString = e => {
+    const deleteSearchString = () => {
         ref.current.reset();
         search('');
         setOpen(!open);

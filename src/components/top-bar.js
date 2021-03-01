@@ -9,6 +9,18 @@ import darkIcon from '../icons/dark.svg'
 const TopBar = ({ search, searchString, resetSearch, onDeleteAll, quitApp }) => {
     const ref = useRef(null);
     const [open, setOpen] = useState(false);
+    const [theme, setTheme] = useState(localStorage.theme || 'dark');
+
+    const toggleTheme = () => {
+        const toogleTheme = theme === 'dark' ? 'light' : 'dark';
+        setTheme(toogleTheme);
+        localStorage.setItem('theme', toogleTheme);
+        document.documentElement.setAttribute('data-theme', toogleTheme);
+    }
+
+    const displayThemeIcon = () => {
+        return theme === 'dark';
+    }
 
     const handleToggle = e => {
         if (ref.current.contains(e.target)) {
@@ -38,7 +50,7 @@ const TopBar = ({ search, searchString, resetSearch, onDeleteAll, quitApp }) => 
 
             </div>
             <SearchBar search={search} searchString={searchString} resetSearch={resetSearch} />
-            <div className="column has-text-right is-4">
+            <div className="column has-text-right is-4 is-flex is-flex-direction-row-reverse">
                 <div ref={ref} className={"dropdown is-right has-text-left" + (!open ? "" : " is-active")}
                     onClick={() => setOpen(!open)}>
                     <div className="dropdown-trigger">
@@ -46,16 +58,6 @@ const TopBar = ({ search, searchString, resetSearch, onDeleteAll, quitApp }) => 
                     </div>
                     <div className="dropdown-menu" id="dropdown-menu3" role="menu">
                         <div className="dropdown-content">
-                            <a className="dropdown-item p-4">
-                                <div class="site-logo__toggle-container">
-                                    <img id="light-icon" src={lightIcon} />
-                                    <img id="dark-icon" src={darkIcon} />
-                                    <label class="toggle-switch" for="toggle-input">
-                                        <input id="toggle-input" type="checkbox" />
-                                        <div class="toggle-switch__control"></div>
-                                    </label>
-                                </div>
-                            </a>
                             <a className="dropdown-item" onClick={(e) => onDeleteAll(e)}>
                                 Delete all
                             </a>
@@ -68,6 +70,10 @@ const TopBar = ({ search, searchString, resetSearch, onDeleteAll, quitApp }) => 
                             </a>
                         </div>
                     </div>
+                </div>
+                <div className="mr-4" onClick={(e) => toggleTheme(e)}>
+                    {displayThemeIcon() && <img id="light-icon" src={lightIcon}/>}
+                    {!displayThemeIcon() && <img id="dark-icon" src={darkIcon} />}
                 </div>
             </div>
         </div>
